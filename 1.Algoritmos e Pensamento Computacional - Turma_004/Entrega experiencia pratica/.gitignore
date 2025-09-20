@@ -1,0 +1,5 @@
+
+# Ignorar arquivos compactados
+*.zip
+*.rar
+*.7z

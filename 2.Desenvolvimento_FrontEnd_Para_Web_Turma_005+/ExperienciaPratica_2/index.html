@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Entrega II</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="theme-auto">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+    <div class="brand">
+      <button id="sidebarToggle" class="hamburger" aria-label="Alternar menu">
+        ☰
+      </button>
+      <span class="brand-name">MyDash</span>
+    </div>
+
+    <nav class="nav" role="navigation" aria-label="Principais">
+      <ul>
+        <li class="nav-item active"><a href="#">Dashboard</a></li>
+        <li class="nav-item">
+          <button class="nav-collapsible" aria-expanded="false">Relatórios ▾</button>
+          <ul class="nav-sub">
+            <li><a href="#">Vendas</a></li>
+            <li><a href="#">Usuários</a></li>
+            <li><a href="#">Performance</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#">Configurações</a></li>
+        <li class="nav-item"><a href="#">Ajuda</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="themeToggle" class="btn btn-ghost" aria-pressed="false">Alternar tema</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- HEADER -->
+    <header class="topbar" role="banner">
+      <div class="topbar-left">
+        <h1 class="page-title">Painel Operacional</h1>
+      </div>
+
+      <div class="topbar-right">
+        <div class="dropdown" id="userDropdown">
+          <button class="btn btn-sm" id="userBtn" aria-haspopup="true" aria-expanded="false">
+            Matheus ▾
+          </button>
+          <div class="dropdown-menu" role="menu" aria-hidden="true">
+            <a href="#" role="menuitem">Perfil</a>
+            <a href="#" role="menuitem">Notificações</a>
+            <a href="#" role="menuitem">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main class="content" id="content" role="main">
+      <!-- Controls: filtro -->
+      <section class="controls card">
+        <form id="filterForm" class="filter-form" aria-label="Formulário de filtro">
+          <div class="form-row">
+            <label for="q">Pesquisar</label>
+            <input id="q" name="q" placeholder="Buscar usuário, compra..." />
+          </div>
+
+          <div class="form-row">
+            <label for="status">Status</label>
+            <select id="status" name="status">
+              <option value="">Todos</option>
+              <option value="active">Ativo</option>
+              <option value="pending">Pendente</option>
+              <option value="critical">Crítico</option>
+            </select>
+          </div>
+
+          <div class="form-row actions">
+            <button type="submit" class="btn">Aplicar filtro</button>
+            <button type="button" id="openSample" class="btn btn-outline">Abrir item</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Metrics Cards -->
+      <section class="grid grid-12 gap-16 metrics">
+        <div class="col-3">
+          <div class="card metric">
+            <div class="metric-title">Usuários</div>
+            <div class="metric-value" id="metricUsers">1.234</div>
+            <div class="metric-meta">Em 30 dias</div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card metric">
+            <div class="metric-title">Compras</div>
+            <div class="metric-value" id="metricOrders">321</div>
+            <div class="metric-meta">Hoje</div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card metric">
+            <div class="metric-title">Receita</div>
+            <div class="metric-value" id="metricRevenue">R$ 24.560</div>
+            <div class="metric-meta">Mês</div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card metric">
+            <div class="metric-title">Status Crítico</div>
+            <div class="metric-value" id="metricCritical">4</div>
+            <div class="metric-meta"><span class="badge badge-critical">Crítico</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Grid: charts and lists -->
+      <section class="grid grid-12 gap-16 main-grid">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-header">
+              <h3>Visão Geral</h3>
+            </div>
+            <div class="card-body">
+              <!-- Placeholder chart: simple svg -->
+              <svg viewBox="0 0 100 40" class="mini-chart" aria-hidden="true">
+                <polyline fill="none" points="0,30 10,25 20,12 30,18 40,10 50,15 60,8 70,12 80,6 90,10 100,4" />
+              </svg>
+              <p class="muted">Gráfico de tendências (placeholder)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="card">
+            <div class="card-header">
+              <h3>Top Atividades</h3>
+            </div>
+            <div class="card-body">
+              <ul class="activity-list">
+                <li><span class="badge badge-active">Ativo</span> João comprou pacote Pro</li>
+                <li><span class="badge badge-pending">Pendente</span> Pagamento: #123</li>
+                <li><span class="badge badge-critical">Crítico</span> Erro no processo X</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table/Lista compacta -->
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Últimas conversões</h3>
+            </div>
+            <div class="card-body">
+              <table class="table" aria-label="Últimas conversões">
+                <thead>
+                  <tr>
+                    <th>Usuário</th><th>Valor</th><th>Status</th><th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                  <tr>
+                    <td>Mariana</td><td>R$120</td><td><span class="badge badge-active">Ativo</span></td>
+                    <td><button class="btn btn-link open-detail">Ver</button></td>
+                  </tr>
+                  <tr>
+                    <td>Rafael</td><td>R$49</td><td><span class="badge badge-pending">Pendente</span></td>
+                    <td><button class="btn btn-link open-detail">Ver</button></td>
+                  </tr>
+                  <tr>
+                    <td>Lucia</td><td>R$1.200</td><td><span class="badge badge-critical">Crítico</span></td>
+                    <td><button class="btn btn-link open-detail">Ver</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-header">
+        <h2>Detalhes do item</h2>
+        <button id="closeModal" class="btn btn-icon" aria-label="Fechar">✕</button>
+      </header>
+      <div class="modal-body">
+        <p id="modalContent">Conteúdo do detalhe...</p>
+      </div>
+      <footer class="modal-footer">
+        <button id="modalClose" class="btn">Fechar</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
